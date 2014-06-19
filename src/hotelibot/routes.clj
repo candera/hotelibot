@@ -1,13 +1,15 @@
 (ns hotelibot.routes
   (:require [clojure.tools.logging :as log]
+            [hotelibot.bot :as bot]
             [ring.middleware.params :refer [wrap-params]]
             [ring.middleware.keyword-params :refer [wrap-keyword-params]]
             [ring.middleware.json :refer [wrap-json-body wrap-json-response]]
             [ring.util.response :refer :all]))
 
 (defn hotelibot
+  "Handles a request for the hotelibot endpoint."
   [request]
-  {:body {:text (format "hi there, %s" (-> request :params :user_name))}})
+  {:body {:text (bot/handle (:params request))}})
 
 (defn four-oh-four [request]
   (-> (response "Page not found")

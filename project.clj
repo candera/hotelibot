@@ -6,6 +6,7 @@
                  [org.clojure/tools.namespace "0.2.4"]
                  [com.stuartsierra/component "0.2.1"]
                  [ring/ring-json "0.3.1"]
+                 [clojail "1.0.6"]
                  [org.slf4j/jcl-over-slf4j "1.7.7"]
                  [org.slf4j/slf4j-api "1.7.7"]
                  [org.slf4j/slf4j-log4j12 "1.7.7"]]
