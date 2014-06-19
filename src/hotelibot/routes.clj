@@ -2,12 +2,12 @@
   (:require [clojure.tools.logging :as log]
             [ring.middleware.params :refer [wrap-params]]
             [ring.middleware.keyword-params :refer [wrap-keyword-params]]
-            [ring.middleware.json :refer [wrap-json-body]]
+            [ring.middleware.json :refer [wrap-json-body wrap-json-response]]
             [ring.util.response :refer :all]))
 
 (defn hotelibot
   [request]
-  (response "Hello"))
+  {:body {:text (format "hi there, %s" (-> request :params :user_name))}})
 
 (defn four-oh-four [request]
   (-> (response "Page not found")
@@ -25,6 +25,7 @@
 
 (def app
   (-> handler
+      wrap-json-response
       wrap-keyword-params
       (wrap-json-body {:keywords? true})
       wrap-params))
