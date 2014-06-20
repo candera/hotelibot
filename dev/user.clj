@@ -1,9 +1,14 @@
 (ns user
-  (:require [clojure.repl :refer :all]
+  (:require [clj-http.client :as client]
+            [clojure.pprint :refer (pprint)]
+            [clojure.repl :refer :all]
+            [clojure.string :as str]
             [clojure.tools.logging :as log]
             [clojure.tools.namespace.repl :refer (refresh)]
             [com.stuartsierra.component :as component]
+            [hotelibot.bot :as bot]
             [hotelibot.routes :as routes]
+            [hotelibot.slack-api :as slack]
             [hotelibot.system-instance :as system-instance]
             ring.adapter.jetty))
 
