@@ -38,7 +38,7 @@
   [request]
   (ring.util.response/redirect
    (format "skype:%s?call"
-           (str/join "," (-> request :params :handle)))))
+           (str/join ";" (-> request :params :handle)))))
 
 (defn four-oh-four [request]
   (-> (response "Page not found")
