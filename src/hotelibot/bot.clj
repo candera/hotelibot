@@ -13,7 +13,7 @@
 
 (defn unknown-command-handler
   "Returns an error message indicating that the command was not recognized"
-  [message command args]
+  [_ command args _]
   (format "Sorry, I don't know what to do with '%s %s'" command args))
 
 (defn parse-users
