@@ -72,14 +72,9 @@
   "Main entry point for handling messages to the hotelibot."
   [message linker]
   (let [{:keys [user_id text trigger_word]} message
-        trigger-len (count trigger_word)
-        has-colon? (= ":" (subs text trigger-len (inc trigger-len)))
-        phrase (-> text
-                   (subs (if has-colon?
-                           (inc trigger-len)
-                           trigger-len))
-                   str/trim)
-        [command args] (str/split phrase #"\s" 2)
+        [trigger phrase] (str/split text #"\s" 2)
+        [command args] (str/split (str/trim phrase) #"\s" 2)
+        command (str/replace command #"[^\w]" "")
         handler (get command-handlers command unknown-command-handler)]
     (try
       (handler message command args linker)
